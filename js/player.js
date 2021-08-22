@@ -53,6 +53,10 @@ class Player {
 
     }
 
+    /* laser(){
+        this.ctx.fillRect()
+    } */
+
 
 }
 
