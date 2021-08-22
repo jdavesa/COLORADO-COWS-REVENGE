@@ -10,7 +10,7 @@ class Obstacle {
     }
     
     draw(){
-        this.speed /=.97
+        this.speed /=.99
         this.obsPosition.x -=1
         this.obsPosition.x -= this.speed
         this.ctx.drawImage(this.obsImg, this.obsPosition.x, this.obsPosition.y, this.obsSize.w, this.obsSize.h)
