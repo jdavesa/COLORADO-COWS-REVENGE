@@ -40,33 +40,23 @@ const myApp = {
 
     setLevelCounter(num){
         
-        this.ctx.font = '70px creepster';
+        this.ctx.font = '25px ShadowUnder';
         this.ctx.fillStyle = 'black'
-        this.ctx.fillText(`LEVEL ${num}`, (this.dimensionCanvas.w/2)-200, +555)
-        this.ctx.font = '70px creepster';
-        this.ctx.fillStyle = 'grey'
+        this.ctx.fillText(`LEVEL ${num}`, (this.dimensionCanvas.w/2) -200, +550)
+        this.ctx.font = '25px ShadowOver';
+        this.ctx.fillStyle = 'red'
         this.ctx.fillText(`LEVEL ${num}`, (this.dimensionCanvas.w/2)-200, +550)
-        this.ctx
-        this.ctx.font = '70px creepster';
-        this.ctx.fillStyle = 'black'
-        this.ctx.strokeText(`LEVEL ${num}`, (this.dimensionCanvas.w/2)-200, +550)
-        this.ctx.lineWidth = 2
     
     },
 
     setScoreCounter(num){
         
-        this.ctx.font = '70px creepster';
+        this.ctx.font = '25px ShadowUnder';
         this.ctx.fillStyle = 'black'
-        this.ctx.fillText(`SCORE ${num}`, (this.dimensionCanvas.w/2)+30, +555)
-        this.ctx.font = '70px creepster';
-        this.ctx.fillStyle = '#FFEC00'
         this.ctx.fillText(`SCORE ${num}`, (this.dimensionCanvas.w/2)+30, +550)
-        this.ctx
-        this.ctx.font = '70px creepster';
-        this.ctx.fillStyle = 'black'
-        this.ctx.strokeText(`SCORE ${num}`, (this.dimensionCanvas.w/2)+30, +550)
-        this.ctx.lineWidth = 2
+        this.ctx.font = '25px ShadowOver';
+        this.ctx.fillStyle = 'red'
+        this.ctx.fillText(`SCORE ${num}`, (this.dimensionCanvas.w/2)+30, +550)
     
     },
     
@@ -116,7 +106,7 @@ const myApp = {
     },
 
     createImage(){
-        this.backImage = new backgroundImage(this.ctx, "images/fondo.png", -6, this.dimensionCanvas)
+        this.backImage = new backgroundImage(this.ctx, "images/fondo.png", -4, this.dimensionCanvas)
     },
 
     createPlayer(){
@@ -126,7 +116,7 @@ const myApp = {
     createObs(){
 
 
-        this.newObs = new Obstacle(this.ctx, 140, 110, (Math.random()*10)*40 , this.dimensionCanvas, 1)
+        this.newObs = new Obstacle(this.ctx, 140, 110, (Math.random()*10)*40 , this.dimensionCanvas, 3)
         
         this.obsArr.push(this.newObs)
 
