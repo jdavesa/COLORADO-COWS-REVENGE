@@ -1,24 +1,13 @@
-/* 
-Juego de plataforma
-
-Cencepto: Actualización juego del dinosaurio del chrome cuando sucede un error 404, basada en un meme de internet
-
-MVP:
-
-- Desplazamiento lateral
-
-- Personaje fijo centro panel de canvas. Opciones de salto (espacio), agachr-se(flecha abajo) y sprint(comer elemento).
-
-- Elemento (logo wifi) misma velocidad que personaje
-
-- Collision con elementos landscape(no sprint) generan retraso.
-
-- Colision con elemento wifi genera game over
-
+/*
 ///////////////////////////////////////////////////////////////////
 
 
 COLORADO COWS REVEANGE
+
+
+En la decada de los sesenta, en algunas zonas de estados unidos, sucedió lo que se denomino "mutilazión de ganado". Vacas y obejas aparecían assesinadas
+bajo circunstancias inusuales. Una teoría afirmava que los culpables eran alienigenas que abducían el ganado con sus obnis para experimentar con ellos.
+Colorado Cows Revenge és una historia de venganza.
 
 */
 
@@ -29,10 +18,32 @@ COLORADO COWS REVEANGE
 
 
 window.onload = () => {
+    document.getElementById('start-button').onclick = () => {
     
-    myApp.init(document.querySelector('#canvas'))
+    let buttonStartSection = document.getElementById('start-button-section')
+    buttonStartSection.setAttribute('class', 'hideAll')
+
+    let cover = document.getElementById('cover')
+    cover.setAttribute('class', 'hideAll')
+
+    
+    document.body.setAttribute('class', 'clear')
+
+
+    let mainLogo = document.getElementById('logo')
+    mainLogo.removeAttribute('class', 'hideAll')
+
+    let gameBoard = document.getElementById('game-board')
+    gameBoard.removeAttribute('class', 'hideAll')
+
+    
+
+  
+    /* myApp.init(document.querySelector('#canvas')) */
+    const canvas = document.querySelector('#canvas')
+    myApp.init(canvas)
    
-    
+    }  
 }
 
 
