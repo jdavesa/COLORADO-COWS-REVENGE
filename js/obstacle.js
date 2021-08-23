@@ -13,18 +13,19 @@ class Obstacle {
     
     draw(){
         this.speed /=.99
-        this.obsPosition.x -=1
+        this.obsPosition.x -=.5
         this.obsPosition.x -= this.speed
         this.ctx.drawImage(this.obsImg, this.obsPosition.x, this.obsPosition.y, this.obsSize.w, this.obsSize.h)
+        /* this.ctx.strokeRect( this.obsPosition.x, this.obsPosition.y, 140, 110) */
         
 
 
     }
 
-   /*  move(){
+    move(){
         this.obsPosition.x *= .99
         this.obsPosition.x -= .4
         this.obsPosition.x -= this.speed
 
-    } */
+    }
 }
