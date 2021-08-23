@@ -7,6 +7,8 @@ class Obstacle {
         this.obsImg = new Image()
         this.obsImg.src = "images/cow.png"
 
+        
+
     }
     
     draw(){
