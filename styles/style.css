@@ -17,9 +17,14 @@
 
 body{
    /*  background-color: rgb(0, 183, 255); */
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(14, 14, 14);
     text-align: center;
+    margin: 0;
 
+}
+
+.clear{
+    background-color:rgb(255, 255, 255)
 }
 
 #canvas{
@@ -46,4 +51,27 @@ body{
 
 #logo img{
     width: 150px;
+}
+
+#start-button{
+    text-decoration: none;
+}
+
+.playNow{
+    font-family: ShadowOver;
+    color: red;
+    text-decoration: none;
+}
+
+.hideAll{
+    display: none;
+}
+
+#cover{
+    width: 100%;
+    padding-top: 30px;
+}
+
+#cover img{
+    width: 450px;;
 }
