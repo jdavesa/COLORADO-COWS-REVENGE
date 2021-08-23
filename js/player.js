@@ -8,7 +8,9 @@ class Player {
         this.playerImage.src = "images/obni2.png"
         this.rayImage = new Image()
         this.rayImage.src = "images/ray.png"
-        this.vy = 5
+        this.explosionImage = new Image()
+        this.explosionImage.src = "images/explosion.png"
+        this.vy = 10
         this.playerX = xP
         this.playerPosition = {
             x: this.canvasDimensions.w / 3 - this.playerWidth / 2,
@@ -43,6 +45,7 @@ class Player {
         this.playerPosition.y = this.playerPosition.y + Math.sin(this.angle)*this.offset
         
         this.ctx.drawImage(this.playerImage, this.playerX, this.playerPosition.y, this.playerWidth, this.playerHeight)
+       /*  this.ctx.strokeRect(this.playerX, this.playerPosition.y, this.playerWidth, this.playerHeight) */
         /* this.ctx.drawImage(this.rayImage,this.playerPosition.x-100, this.playerPosition.y+90, 30, 150) */
         this.angle += this.speed
           
@@ -50,8 +53,8 @@ class Player {
 
     move(){
 
-        this.playerPosition.y > 0 && this.moveUp ? this.playerPosition.y -= this.vy : null
-        this.playerPosition.y + this.playerHeight && this.moveDown ? this.playerPosition.y += this.vy : null
+        this.playerPosition.y > 20 && this.moveUp ? this.playerPosition.y -= this.vy : null
+        this.playerPosition.y + this.playerHeight < this.canvasDimensions.h-100 && this.moveDown ? this.playerPosition.y += this.vy : null
     }
 
 
@@ -77,19 +80,19 @@ class Player {
 
         this.laserOn ? this.laserH +=this.laserSpeed : null
         this.laserOn ? this.ctx.drawImage(this.rayImage,this.playerPosition.x-85, this.playerPosition.y+50, 50, this.laserH) : null
-        
+        this.laserH > 150 ? this.laserH = 0 : null
     
     }
 
-    deleteLaser(){
+   /*  deleteLaser(){
+        this.laserOff ? this.laserH = 0 : null
         
-        setTimeout(()=>{
-            this.laserOff ? this.laserH -= 1 : null
-            this.laserOff ? this.laserH = 0 : null
-        },1000)
+    } */
+
+    drawExplosion(){
+        this.ctx.drawImage(this.explosionImage, this.playerX-40, this.playerPosition.y-50, 190, 180)
+
     }
-
-
 }
 
 /* 
