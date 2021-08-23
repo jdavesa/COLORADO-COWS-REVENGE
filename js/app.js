@@ -69,7 +69,7 @@ const myApp = {
         requestAnimationFrame(() => this.refreshScreen());
     }, */
 
-    refreshScreen(){
+    /* refreshScreen(){
         this.intervalId = setInterval(() => {
             this.backImage.move()
             this.ctx.clearRect(0,0,this.dimensionCanvas.w,this.dimensionCanvas.h)
@@ -96,6 +96,39 @@ const myApp = {
             
         },1000/60)
     },
+ */
+    refreshScreen(){
+        
+            this.backImage.move()
+            this.ctx.clearRect(0,0,this.dimensionCanvas.w,this.dimensionCanvas.h)
+            this.backImage.draw()
+            
+            this.frameCounter ++
+            if(this.frameCounter % 25 === 0){
+                this.createObs()
+                console.log(this.frameCounter)
+                console.log(this.obsArr)
+            }
+
+            if(this.frameCounter % 500 === 0){
+                this.counterLevel ++
+            }
+            this.setLevelCounter(this.counterLevel)
+
+            if(this.frameCounter % 50 === 0){
+                this.counterScore ++
+            }
+            this.setScoreCounter(this.counterScore)
+            this.drawAll()
+            this.newPlayer.draw()
+            this.newPlayer.move()
+            this.newPlayer.deleteLaser()
+            this.newPlayer.drawLaser()
+            
+            requestAnimationFrame(() => this.refreshScreen());
+    },
+
+    
 
 
 
@@ -110,10 +143,11 @@ const myApp = {
     },
 
     createPlayer(){
-        this.newPlayer = new Player(this.ctx, 200, 110, 100, this.dimensionCanvas)
+        this.newPlayer = new Player(this.ctx, 200, 140, 50, this.dimensionCanvas)
     },
 
     createObs(){
+
 
 
         this.newObs = new Obstacle(this.ctx, 140, 110, (Math.random()*10)*40 , this.dimensionCanvas, 3)
@@ -126,31 +160,34 @@ const myApp = {
 
     setListeners(){
         
-        window.addEventListener('keydown',(e) => {
+ /*        window.addEventListener('keydown',(e) => {
             if(e.code === 'ArrowUp'){this.newPlayer.moveUp()}
         }) 
         
         window.addEventListener('keydown',(e) => {
-            if(e.code === 'ArrowDown'){this.newPlayer.falling()}
+            if(e.code === 'ArrowDown'){this.newPlayer.moveDown()}
         }) 
 
-       /*  this.moving = event => {
-            switch (event.code) {
-              case "Space":
-                isSpaceKeyPressed = true;
-                break; 
-            }
-          };
-          
-          this.handleKeyUp = event => {
-            switch (event.code) {
-              case "Space":
-                isSpaceKeyPressed = false;
-                break;      
-            }
-          };
- */
-        /* window.addEventListener("keydown", this.newPlayer.moveUp());
-        window.addEventListener("keyup", this.newPlayer.falling()); */
+        window.addEventListener('keydown', (e) =>{
+            if(e.code === 'Space'){this.newPlayer.drawLaser()
+            console.log('laser')}
+        }) */
+
+        document.addEventListener('keydown', e => {
+            e.code === 'Space' ? this.newPlayer.laserOn = true : null
+            e.code === 'Space' ? this.newPlayer.laserOff = false : null
+            e.key === 'ArrowUp' ? this.newPlayer.moveUp = true : null
+            e.key === 'ArrowDown' ? this.newPlayer.moveDown = true : null
+            
+          })
+      
+          document.addEventListener('keyup', e => {
+            e.code === 'Space' ? this.newPlayer.laserOn = false : null
+            e.code === 'Space' ? this.newPlayer.laserOff = true : null
+            e.key === 'ArrowUp' ? this.newPlayer.moveUp = false : null
+            e.key === 'ArrowDown' ? this.newPlayer.moveDown = false : null
+           
+          })
+
     }
 }
