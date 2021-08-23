@@ -4,12 +4,17 @@ const myApp = {
     backImage: undefined,
     newPlayer: undefined,
     intId: undefined,
+    myReq: null,
     obsArr: [],
     intervalId: undefined,
     frameCounter: 0,
     counterLevel: 0,
     counterScore: 0,
-
+    newArr: [],
+    
+    cancelAnimation: false,
+    abduction: false,
+    spacePress: false,
 
     init(elementCanvas){
         this.setContext(elementCanvas)
@@ -21,6 +26,7 @@ const myApp = {
         this.drawAll()
         this.setListeners()
         this.refreshScreen()
+        this.isSpacePress()
         this.setLevelCounter(this.coutnerLevel)
         this.setScoreCounter(this.counterScore)
             
@@ -98,34 +104,38 @@ const myApp = {
     },
  */
     refreshScreen(){
-        
+            this.checkIfCollision()
+            this.checkIfAbduction()
             this.backImage.move()
             this.ctx.clearRect(0,0,this.dimensionCanvas.w,this.dimensionCanvas.h)
             this.backImage.draw()
             
             this.frameCounter ++
-            if(this.frameCounter % 25 === 0){
+            if(this.frameCounter % 50 === 0){
                 this.createObs()
-                console.log(this.frameCounter)
-                console.log(this.obsArr)
+                console.log(this.newArr)
             }
 
-            if(this.frameCounter % 500 === 0){
+            if(this.frameCounter % 5000 === 0){
                 this.counterLevel ++
             }
             this.setLevelCounter(this.counterLevel)
 
-            if(this.frameCounter % 50 === 0){
-                this.counterScore ++
-            }
             this.setScoreCounter(this.counterScore)
             this.drawAll()
             this.newPlayer.draw()
             this.newPlayer.move()
-            this.newPlayer.deleteLaser()
+           /*  this.newPlayer.deleteLaser() */
             this.newPlayer.drawLaser()
             
-            requestAnimationFrame(() => this.refreshScreen());
+            this.myReq = window.requestAnimationFrame(() => this.refreshScreen());
+
+
+            if(this.cancelAnimation === true){
+                window.cancelAnimationFrame(this.myReq)
+                this.newPlayer.drawExplosion()
+            }
+        
     },
 
     
@@ -139,7 +149,7 @@ const myApp = {
     },
 
     createImage(){
-        this.backImage = new backgroundImage(this.ctx, "images/fondo.png", -4, this.dimensionCanvas)
+        this.backImage = new backgroundImage(this.ctx, "images/fondo.png", -3, this.dimensionCanvas)
     },
 
     createPlayer(){
@@ -150,7 +160,7 @@ const myApp = {
 
 
 
-        this.newObs = new Obstacle(this.ctx, 140, 110, (Math.random()*10)*40 , this.dimensionCanvas, 3)
+        this.newObs = new Obstacle(this.ctx, 140, 80, (Math.random()*10)*40 , this.dimensionCanvas, .2)
         
         this.obsArr.push(this.newObs)
 
@@ -189,5 +199,88 @@ const myApp = {
            
           })
 
-    }
+          /* document.addEventListener('keypress', e => {
+              e.key ==='space' ? this.newPlayer.laserOn = true : null
+          }) */
+
+    },
+    
+
+    isSpacePress(){
+        document.addEventListener('keypress', e => {
+            e.code === 'Space' ? this.spacePress = true : null})
+
+        document.addEventListener('keyup', e => {
+            if(e.code === 'Space'){ 
+                this.spacePress = false
+                this.newPlayer.laserH = 0
+
+            
+            
+            }})
+
+    },
+
+    checkIfCollision() {
+        if (this.obsArr.length) {
+          this.obsArr.forEach(elem => {
+            elem.draw();
+    
+            if (
+              this.newPlayer.playerPosition.x < elem.obsPosition.x + elem.obsSize.w -120  &&
+              this.newPlayer.playerPosition.x + this.newPlayer.playerWidth -120 > elem.obsPosition.x &&
+              this.newPlayer.playerPosition.y < elem.obsPosition.y + elem.obsSize.h-20 &&
+              this.newPlayer.playerPosition.y + this.newPlayer.playerHeight > elem.obsPosition.y
+            ) {
+                this.cancelAnimation = true
+
+                console.log(this.newPlayer.playerPosition.x)
+                console.log(this.newPlayer.playerWidth)
+                console.log(elem.obsSize.w)
+                
+                console.log('hola')
+            }
+          });
+        }
+      },
+
+
+
+      checkIfAbduction() {
+        if (this.obsArr.length) {
+          this.obsArr.forEach(elem => {
+            elem.draw();
+    
+            if (
+              this.newPlayer.playerPosition.x-85 < elem.obsPosition.x + elem.obsSize.w &&
+              this.newPlayer.playerPosition.x-85 + 50 > elem.obsPosition.x &&
+              this.newPlayer.playerPosition.y+50 < elem.obsPosition.y + elem.obsSize.h-20 &&
+              this.newPlayer.playerPosition.y+50 + 120 > elem.obsPosition.y && this.spacePress === true
+            ) {
+                this.abduction = true
+
+                this.counterScore += 1
+
+                this.newArr.push(elem)
+
+                
+
+                elem.obsSize.w = 0
+                elem.obsSize.h = 0
+
+                console.log(this.newPlayer.playerPosition.x)
+                console.log(this.newPlayer.playerWidth)
+                console.log(elem.obsSize.w)
+                
+                console.log('pepe')
+            }
+          });
+        }
+      }
+    
 }
+
+/* if (rect1.x < rect2.x + rect2.width &&
+    rect1.x + rect1.width > rect2.x &&
+    rect1.y < rect2.y + rect2.height &&
+    rect1.y + rect1.height > rect2.y) */
