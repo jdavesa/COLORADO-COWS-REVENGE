@@ -5,14 +5,27 @@ class Player {
         this.playerHeight = height
         this.canvasDimensions = canvasDimensions
         this.playerImage = new Image()
-        this.playerImage.src = "images/obni.png"
-        this.vy = 20
+        this.playerImage.src = "images/obni2.png"
+        this.rayImage = new Image()
+        this.rayImage.src = "images/ray.png"
+        this.vy = 5
         this.playerX = xP
         this.playerPosition = {
             x: this.canvasDimensions.w / 3 - this.playerWidth / 2,
             y: this.canvasDimensions.h /2 -this.playerHeight/2
 
         }
+
+        this.speed = 0.05
+        this.angle = 0
+        this.offset = 5 * .1
+        this.moveUp = false;
+        this.moveDown = false;
+        this.laserOn = false;
+        this.laserOff = true
+        this.laserSpeed = 10;
+
+        this.laserH = 0
 
     }
     move(){
@@ -27,35 +40,54 @@ class Player {
         {this.playerPosition.y -= this.vy} */
         
         /* else if (this.playerPosition.y<this.canvasDimensions.h+200) */
+        this.playerPosition.y = this.playerPosition.y + Math.sin(this.angle)*this.offset
+        
         this.ctx.drawImage(this.playerImage, this.playerX, this.playerPosition.y, this.playerWidth, this.playerHeight)
-        
-        
+        /* this.ctx.drawImage(this.rayImage,this.playerPosition.x-100, this.playerPosition.y+90, 30, 150) */
+        this.angle += this.speed
+          
     }
 
-    newPos(){
+    move(){
 
+        this.playerPosition.y > 0 && this.moveUp ? this.playerPosition.y -= this.vy : null
+        this.playerPosition.y + this.playerHeight && this.moveDown ? this.playerPosition.y += this.vy : null
     }
 
-    moveUp(){
+
+
+  /*   moveUp(){
 
         if(this.playerPosition.y > 0){
             
-          
             this.playerPosition.y -= this.vy}
         
     }
 
-    falling(){
+    moveDown(){
 
         if(this.playerPosition.y+this.playerHeight < this.canvasDimensions.h-100){
            
             this.playerPosition.y += this.vy}
+            
 
+    } */
+
+    drawLaser(){
+
+        this.laserOn ? this.laserH +=this.laserSpeed : null
+        this.laserOn ? this.ctx.drawImage(this.rayImage,this.playerPosition.x-85, this.playerPosition.y+50, 50, this.laserH) : null
+        
+    
     }
 
-    /* laser(){
-        this.ctx.fillRect()
-    } */
+    deleteLaser(){
+        
+        setTimeout(()=>{
+            this.laserOff ? this.laserH -= 1 : null
+            this.laserOff ? this.laserH = 0 : null
+        },1000)
+    }
 
 
 }
