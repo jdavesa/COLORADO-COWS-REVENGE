@@ -9,11 +9,31 @@
     
 </head>
 <body>
+    <audio id="explosion" src="./audio/explosion.mp3" ></audio>
+    <audio id="theme" src="./audio/theme.mp3" ></audio>
+    <audio id="click" src="./audio/click.mp3" ></audio>
+    <audio id="ufo" src="./audio/ufo.mp3" ></audio>
     <div id="logo" class="hideAll">
         <img src="./images/Logo.png">
     </div>
+    <div id="sound">
+        <a id="sound-on" href="#">
+            <img src="./images/soundOn.png">
+        </a>
+        <a id="sound-off" href="#" class="hideAll">
+            <img src="./images/soundOff.png">
+        </a>
+    </div>
+    <div id="cover-div">
     <div id="cover" >
-        <img src="./images/cartelCCR.jpg">
+        <div id="instruction1">
+        <img src="./images/instruction1.png">
+        </div>
+        <img id="cartel" src="./images/cartelCCR.jpg">
+        <div id="instruction2">
+        <img src="./images/instruction2.png">
+        </div>
+    </div>
     </div>
     <div id="game-board" class="hideAll">
         <canvas id="canvas"></canvas>
@@ -21,6 +41,9 @@
     <div id=start-button-section>
         <a id="start-button" href="#">
             <h1 class="playNow">PLAY NOW!</h1>
+        </a>
+        <a id="play-again-button" href="#" class='hideAll'>
+            <h1 class="playAgain">PLAY AGAIN</h1>
         </a>
     </div>
     <script type="text/javascript" src="js/index.js"></script>

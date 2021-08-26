@@ -7,7 +7,7 @@ class Player {
         this.playerImage = new Image()
         this.playerImage.src = "images/obni2.png"
         this.rayImage = new Image()
-        this.rayImage.src = "images/ray.png"
+        this.rayImage.src = "images/ray2.png"
         this.explosionImage = new Image()
         this.explosionImage.src = "images/explosion.png"
         this.vy = 10
@@ -90,7 +90,7 @@ class Player {
     } */
 
     drawExplosion(){
-        this.ctx.drawImage(this.explosionImage, this.playerX-40, this.playerPosition.y-50, 190, 180)
+        this.ctx.drawImage(this.explosionImage, this.playerX+10, this.playerPosition.y-50, 170, 150)
 
     }
 }
