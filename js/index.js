@@ -18,7 +18,7 @@ Colorado Cows Revenge és una historia de venganza.
 
 
 window.onload = () => {
-    document.getElementById('start-button').onclick = () => {
+    document.getElementById('cartel').onclick = () => {
         clickSound()
 
         let soundSection = document.getElementById('sound-on')
