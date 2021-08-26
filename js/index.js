@@ -20,35 +20,38 @@ Colorado Cows Revenge és una historia de venganza.
 window.onload = () => {
     document.getElementById('start-button').onclick = () => {
         clickSound()
+
+        let soundSection = document.getElementById('sound-on')
+        soundSection.removeAttribute('class', 'hideAll')
     
-    let soundOn = document.getElementById('start-button')
-    soundOn.setAttribute('class', 'hideAll')
+        let soundOn = document.getElementById('start-button')
+        soundOn.setAttribute('class', 'hideAll')
 
-   /*  let theme = document.getElementById('theme')
-    theme.play() */
+        /*  let theme = document.getElementById('theme')
+        theme.play() */
 
-    let cover = document.getElementById('cover-div')
-    cover.setAttribute('class', 'hideAll')
+        let cover = document.getElementById('cover-div')
+        cover.setAttribute('class', 'hideAll')
 
     
-    document.body.setAttribute('class', 'clear')
+        document.body.setAttribute('class', 'clear')
 
 
-    let mainLogo = document.getElementById('logo')
-    mainLogo.removeAttribute('class', 'hideAll')
+        let mainLogo = document.getElementById('logo')
+        mainLogo.removeAttribute('class', 'hideAll')
 
-    let gameBoard = document.getElementById('game-board')
-    gameBoard.removeAttribute('class', 'hideAll')
+        let gameBoard = document.getElementById('game-board')
+        gameBoard.removeAttribute('class', 'hideAll')
 
-   /*  let playAgain = document.getElementById('play-again-button')
-    playAgain.removeAttribute('class', 'hideAll') */
+        /*  let playAgain = document.getElementById('play-again-button')
+        playAgain.removeAttribute('class', 'hideAll') */
 
     
 
   
-    /* myApp.init(document.querySelector('#canvas')) */
-    const canvas = document.querySelector('#canvas')
-    myApp.init(canvas)
+        /* myApp.init(document.querySelector('#canvas')) */
+        const canvas = document.querySelector('#canvas')
+        myApp.init(canvas)
    
     }  
 
@@ -60,7 +63,9 @@ window.onload = () => {
         
     
         
-        }  
+    } 
+
+    
 }
 
 function clickSound(){

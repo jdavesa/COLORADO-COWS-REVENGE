@@ -36,6 +36,7 @@ const myApp = {
         this.setLevelCounter(this.coutnerLevel)
         this.setScoreCounter(this.counterScore)
         this.playAgainButton.setAttribute('class', 'hideAll')
+        
             
     },
 
@@ -199,6 +200,10 @@ const myApp = {
 
     createImage(){
         this.backImage = new backgroundImage(this.ctx, "images/fondo.png", -3, this.dimensionCanvas)
+    },
+
+    createImageDark(){
+        this.backImage = new backgroundImage(this.ctx, "images/fondoDark.png", -3, this.dimensionCanvas)
     },
 
     createPlayer(){
